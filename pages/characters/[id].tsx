@@ -1,7 +1,6 @@
 // next
 import type {NextPage} from 'next'
 import Head from 'next/head'
-import Link from "next/link";
 import {useRouter} from 'next/router'
 
 // react
@@ -14,6 +13,8 @@ import character from '../../types/character'
 import {extractIdFromUrl} from "../../utils/functions";
 import {getCharacters} from "../../api/iceandfire";
 import Character from "../../types/character";
+import Navigation from "../../components/nav";
+import Footer from "../../components/footer";
 
 const Characters: NextPage = () => {
     // url params
@@ -34,6 +35,7 @@ const Characters: NextPage = () => {
         })
     }, [id])
 
+    // fetch books of character
     useEffect(() => {
         if (chars) {
             let result: any[] = []
@@ -45,6 +47,7 @@ const Characters: NextPage = () => {
         }
     }, [chars])
 
+    // fetch allegiances of character
     useEffect(() => {
         if (chars) {
             let result: any[] = []
@@ -57,7 +60,6 @@ const Characters: NextPage = () => {
     }, [chars])
 
     console.log(chars)
-    console.log(allegiances)
 
     return (
         <>
@@ -66,41 +68,31 @@ const Characters: NextPage = () => {
                 <link rel="icon" href="/favicon.ico"/>
             </Head>
 
-            {/* header */}
-            <div className="max-w-7xl mx-auto">
-                <nav className="relative z-10 bg-white lg:w-full h-full">
-                    <div className="relative bg-white z-40">
-                        <div className="max-w-7xl mx-auto px-4 sm:px-6">
-                            <div className=" flex justify-between items-center  border-gray-100 py-6  md:space-x-10">
-                                <div className="flex justify-start items-center gap-12"><Link
-                                    className="flex items-center"
-                                    href='/'><span
-                                    className="ml-2 text-2xl font-bold">Next <span
-                                    className="text-indigo-600">Ice And Fire</span></span></Link>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </nav>
+            <div className="max-w-7xl mx-auto min-h-screen">
 
-                <div className="flex">
+                <Navigation />
+
+                {/* main */}
+                <main className="flex">
                     <div className="container mx-auto my-5 p-5">
                         <div className="md:flex no-wrap md:-mx-2 ">
                             <div className="w-full md:w-3/12 md:mx-2">
+                                {/* names */}
                                 <div className="bg-white p-3 border-t-4 border-indigo-400 gap-1 flex flex-col">
-                                    <h1 className="text-gray-900 font-bold text-xl leading-8 my-1">{chars?.name}</h1>
+                                    <h1 className="text-gray-900 font-bold text-xl leading-8 my-1">{chars?.name ? chars?.name : "Unknown"}</h1>
                                     <h2 className="text-gray-600 font-lg font-semibold leading-6">{chars?.titles ? chars?.titles.join(', ') : 'No titles'}</h2>
                                     <h3 className="text-gray-600 font-lg leading-6">{chars?.aliases ? chars?.aliases.join(', ') : 'No aliase'}</h3>
                                     <p className="text-gray-400">{chars?.playedBy ? chars?.playedBy.join(', ') : 'No actor'}</p>
                                 </div>
+                                {/* allegiances */}
                                 <div className="my-4">
                                     <ul
                                         className="bg-gray-100 text-gray-600 w py-2 px-3 mt-3 divide-y rounded shadow-sm">
-                                        {allegiances?.map((item, index) => (
+                                        {allegiances?.length > 0 ? allegiances?.map((item, index) => (
                                             <li key={index} className="flex items-center py-3">
                                                 <span>{item.name}</span>
                                             </li>
-                                        ))}
+                                        )) : 'No allegiances'}
                                     </ul>
                                 </div>
                             </div>
@@ -118,47 +110,48 @@ const Characters: NextPage = () => {
                                         </span>
                                         <span className="tracking-wide">About</span>
                                     </div>
+                                    {/* details */}
                                     <div className="text-gray-700">
                                         <div className="grid md:grid-cols-2 text-sm">
                                             <div className="grid grid-cols-2">
                                                 <div className="px-4 py-2 font-semibold">First Name</div>
-                                                <div className="px-4 py-2">{chars?.name.split(' ')[0]}</div>
+                                                <div className="px-4 py-2">{chars?.name.split(' ')[0] ? chars?.name.split(' ')[0] : 'Unknown'}</div>
                                             </div>
                                             <div className="grid grid-cols-2">
                                                 <div className="px-4 py-2 font-semibold">Last Name</div>
-                                                <div className="px-4 py-2">{chars?.name.split(' ')[1]}</div>
+                                                <div className="px-4 py-2">{chars?.name.split(' ')[1] ? chars?.name.split(' ')[1] : 'Unknown'}</div>
                                             </div>
                                             <div className="grid grid-cols-2">
                                                 <div className="px-4 py-2 font-semibold">Gender</div>
-                                                <div className="px-4 py-2">{chars?.gender}</div>
+                                                <div className="px-4 py-2">{chars?.gender ? chars?.gender : 'Unknown'}</div>
                                             </div>
                                             <div className="grid grid-cols-2">
                                                 <div className="px-4 py-2 font-semibold">Culture</div>
-                                                <div className="px-4 py-2">{chars?.culture}</div>
+                                                <div className="px-4 py-2">{chars?.culture ? chars?.culture : 'Unknown'}</div>
                                             </div>
                                             <div className="grid grid-cols-2">
                                                 <div className="px-4 py-2 font-semibold">Born</div>
-                                                <div className="px-4 py-2">{chars?.born}</div>
+                                                <div className="px-4 py-2">{chars?.born ? chars?.born : 'Unknown'}</div>
                                             </div>
                                             <div className="grid grid-cols-2">
                                                 <div className="px-4 py-2 font-semibold">Died</div>
-                                                <div className="px-4 py-2">{chars?.died}</div>
+                                                <div className="px-4 py-2">{chars?.died ? chars?.died : 'Unknown'}</div>
                                             </div>
                                             <div className="grid grid-cols-2">
                                                 <div className="px-4 py-2 font-semibold">Father</div>
-                                                <div className="px-4 py-2">{chars?.father}</div>
+                                                <div className="px-4 py-2">{chars?.father ? chars?.father : 'Unknown'}</div>
                                             </div>
                                             <div className="grid grid-cols-2">
                                                 <div className="px-4 py-2 font-semibold">Mother</div>
-                                                <div className="px-4 py-2">{chars?.mother}</div>
+                                                <div className="px-4 py-2">{chars?.mother ? chars?.mother : 'Unknown'}</div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                                <div className="my-4"></div>
+                                {/* appearance */}
                                 <div className="bg-white p-3 shadow-sm rounded-sm">
-
                                     <div className="grid grid-cols-2">
+                                        {/* tv series */}
                                         <div>
                                             <div
                                                 className="flex items-center space-x-2 font-semibold text-gray-900 leading-8 mb-3">
@@ -173,13 +166,14 @@ const Characters: NextPage = () => {
                                                 <span className="tracking-wide">TV Series</span>
                                             </div>
                                             <ul className="list-inside space-y-2">
-                                                {chars?.tvSeries.map((item, index) => (
+                                                {chars && chars?.tvSeries.length > 0 && chars?.tvSeries[0] !== '' ? chars?.tvSeries.map((item, index) => (
                                                     <li key={index}>
-                                                        <div className="text-teal-600">{item}</div>
+                                                        {item}
                                                     </li>
-                                                ))}
+                                                )) : 'No TV Series'}
                                             </ul>
                                         </div>
+                                        {/* books */}
                                         <div>
                                             <div
                                                 className="flex items-center space-x-2 font-semibold text-gray-900 leading-8 mb-3">
@@ -199,7 +193,7 @@ const Characters: NextPage = () => {
                                             <ul className="list-inside space-y-2">
                                                 {books?.map((book, index) => (
                                                     <li key={index}>
-                                                        <div className="text-teal-600"><a
+                                                        <div className="text-indigo-600"><a
                                                             href={"/books/" + extractIdFromUrl(book.url)}>{book.name}</a>
                                                         </div>
                                                     </li>
@@ -211,19 +205,10 @@ const Characters: NextPage = () => {
                             </div>
                         </div>
                     </div>
-                </div>
+                </main>
             </div>
 
-            <footer className="flex h-24 w-full items-center justify-center border-t">
-                <a
-                    className="flex items-center justify-center gap-2"
-                    href="https://evanjuge.fr"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                >
-                    Powered by Evan JUGE
-                </a>
-            </footer>
+            <Footer />
         </>
     )
 }

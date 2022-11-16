@@ -1,7 +1,6 @@
 // next
 import type {NextPage} from 'next'
 import Head from 'next/head'
-import Link from "next/link";
 import {useRouter} from 'next/router'
 
 // react
@@ -14,6 +13,8 @@ import character from '../../types/character'
 // utils
 import {extractIdFromUrl} from "../../utils/functions";
 import {getBooks} from "../../api/iceandfire";
+import Footer from "../../components/footer";
+import Navigation from "../../components/nav";
 
 const Book: NextPage = () => {
     // url params
@@ -71,20 +72,10 @@ const Book: NextPage = () => {
                 <link rel="icon" href="/favicon.ico"/>
             </Head>
 
-            {/* header */}
-            <div className="max-w-7xl mx-auto h-full">
-                <nav className="relative z-10 bg-white lg:w-full h-full">
-                    <div className="relative bg-white z-40">
-                        <div className="max-w-7xl mx-auto px-4 sm:px-6">
-                            <div className=" flex justify-between items-center  border-gray-100 py-6  md:space-x-10">
-                                <div className="flex justify-start items-center gap-12"><Link
-                                    className="flex items-center"
-                                    href='/'><span
-                                    className="ml-2 text-2xl font-bold">Next <span className="text-indigo-600">Ice And Fire</span></span></Link>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+            <div className="max-w-7xl mx-auto h-full min-h-screen">
+                <div className="relative z-10 bg-white lg:w-full h-full">
+
+                    <Navigation />
 
                     <div className="flex">
                         <aside className="relative bg-white w-72 h-full">
@@ -110,7 +101,8 @@ const Book: NextPage = () => {
                                 </div>
                             </div>
                         </aside>
-                        <div className="container mx-auto px-4 sm:px-8 max-w-3xl h-screen">
+                        {/* main */}
+                        <main className="container mx-auto px-4 sm:px-8 max-w-3xl h-screen">
                             <div className="py-8">
                                 <div className="-mx-4 sm:-mx-8 px-4 sm:px-8 py-4">
                                     <div className="inline-block min-w-full shadow rounded-lg overflow-hidden">
@@ -201,20 +193,12 @@ const Book: NextPage = () => {
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </main>
                     </div>
-                </nav>
+                </div>
             </div>
-            <footer className="flex h-24 w-full items-center justify-center border-t">
-                <a
-                    className="flex items-center justify-center gap-2"
-                    href="https://evanjuge.fr"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                >
-                    Powered by Evan JUGE
-                </a>
-            </footer>
+
+            <Footer />
         </>
     )
 }
