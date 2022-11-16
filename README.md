@@ -1,27 +1,15 @@
-# Next.js + Tailwind CSS Example
+# Next.js, Tailwind et Ice and Fire API
 
-This example shows how to use [Tailwind CSS](https://tailwindcss.com/) [(v3.2)](https://tailwindcss.com/blog/tailwindcss-v3-2) with Next.js. It follows the steps outlined in the official [Tailwind docs](https://tailwindcss.com/docs/guides/nextjs).
+Test technique en 3h
 
-## Deploy your own
+L’objectif de ce test est de montrer à la fois vos capacités en React et en conception fonctionnelle. C’est un test ouvert qui n’a pas de fin en soi ; l’objectif est d’en faire le maximum en trois heures.
 
-Deploy the example using [Vercel](https://vercel.com?utm_source=github&utm_medium=readme&utm_campaign=next-example) or preview live with [StackBlitz](https://stackblitz.com/github/vercel/next.js/tree/canary/examples/with-tailwindcss)
+Le but est de réaliser une IHM web pluggée sur cette API publique Game of Thrones : [https://anapioficeandfire.com](https://anapioficeandfire.com/)
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/git/external?repository-url=https://github.com/vercel/next.js/tree/canary/examples/with-tailwindcss&project-name=with-tailwindcss&repository-name=with-tailwindcss)
+A minima, l’application doit permettre de lister les livres présents dans la base (via l’API [https://anapioficeandfire.com/api/books](https://anapioficeandfire.com/api/books)) et de consulter les personnages liés à ces livres. L’implémentation de fonctionnalités secondaires (ex : lien entre les personnages, mise en favori de certains livres ou personnages…) est laissée libre au candidat.
 
-## How to use
+Techniquement, le seul choix imposé est l’utilisation de React. Le choix d’utiliser ou non Redux, Typescript, Axios etc est laissé libre.
 
-Execute [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app) with [npm](https://docs.npmjs.com/cli/init), [Yarn](https://yarnpkg.com/lang/en/docs/cli/create/), or [pnpm](https://pnpm.io) to bootstrap the example:
+Vu les contraintes de temps, aucun design particulier n’est attendu, juste que la solution soit raisonnablement fonctionnelle et conforme aux standards web.
 
-```bash
-npx create-next-app --example with-tailwindcss with-tailwindcss-app
-```
-
-```bash
-yarn create next-app --example with-tailwindcss with-tailwindcss-app
-```
-
-```bash
-pnpm create next-app --example with-tailwindcss with-tailwindcss-app
-```
-
-Deploy it to the cloud with [Vercel](https://vercel.com/new?utm_source=github&utm_medium=readme&utm_campaign=next-example) ([Documentation](https://nextjs.org/docs/deployment)).
+Merci de faire un premier commit une fois l’application initialisée et un dernier une fois l’application finie.
